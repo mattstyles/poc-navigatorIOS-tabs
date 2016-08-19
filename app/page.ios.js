@@ -4,6 +4,7 @@ import React, {Component} from 'react'
 import {View, Text} from 'react-native'
 
 import Button from './button'
+import {dispatcher} from './navigator'
 
 export default class Page extends Component {
   constructor (props, context) {
@@ -13,7 +14,11 @@ export default class Page extends Component {
   }
 
   onPush () {
-    this.props.navigator.push({
+    // this.props.navigator.push({
+    //   component: Page,
+    //   title: 'Page ' + (Math.random() * 1000 | 0)
+    // })
+    dispatcher.emit('push', {
       component: Page,
       title: 'Page ' + (Math.random() * 1000 | 0)
     })

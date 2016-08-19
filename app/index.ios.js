@@ -1,8 +1,10 @@
 
 import React, {Component} from 'react'
-import {NavigatorIOS} from 'react-native'
+import {Navigator, Text, TouchableHighlight} from 'react-native'
 
 import MainPage from './main'
+import {dispatcher, routeMapper} from './navigator'
+
 
 export default class App extends Component {
   constructor (props) {
@@ -10,15 +12,46 @@ export default class App extends Component {
 
     this.route = {
       component: MainPage,
-      title: 'Initial'
+      title: 'Home',
+      selected: 'home'
     }
+  }
+
+  componentDidMount () {
+    dispatcher.on('pop', () => {
+      // navigator.pop()
+      this.refs.Nav.pop()
+    })
+    dispatcher.on('push', (route) => {
+      this.refs.Nav.push(route)
+    })
+    dispatcher.on('replace', (route) => {
+      this.refs.Nav.replace(route)
+    })
+  }
+
+  renderScene (route, navigator) {
+    return <route.component
+      navigator={navigator}
+      route={route}
+    />
   }
 
   render () {
     return (
-      <NavigatorIOS
+      <Navigator
+        ref='Nav'
         initialRoute={this.route}
+        renderScene={this.renderScene}
         style={{flex: 1}}
+        navigationBar={
+          <Navigator.NavigationBar
+            routeMapper={routeMapper()}
+            style={{
+              backgroundColor:'rgb(246,246,248)'
+            }}
+          />
+        }
       />
     )
   }
