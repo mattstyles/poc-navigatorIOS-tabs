@@ -44,6 +44,7 @@ export default class App extends Component {
         initialRoute={this.route}
         renderScene={this.renderScene}
         style={{flex: 1}}
+        configureScene={(route, routeStack) => Navigator.SceneConfigs.PushFromRight}
         navigationBar={
           <Navigator.NavigationBar
             routeMapper={routeMapper()}
