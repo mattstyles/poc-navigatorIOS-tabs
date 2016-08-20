@@ -13,41 +13,38 @@ import Button from './app/button'
 import most from 'most'
 import EventEmitter from 'eventemitter3'
 
-class Page1 extends Component {
-  render () {
-    return (
-      <View style={styles.view}>
-        <Text>Page 1</Text>
-        <Button
-          onPress={() => {
-            signal.emit('action', {
-              type: 'push',
-              Component: Page2
-            })
-          }}
-          text='Next'
-        />
-      </View>
-    )
-  }
+const Page1 = props => {
+  return (
+    <View style={styles.view}>
+      <Text>Page 1</Text>
+      <Button
+        onPress={() => {
+          signal.emit('action', {
+            type: 'push',
+            Component: Page2
+          })
+        }}
+        text='Next'
+      />
+    </View>
+  )
 }
 
-class Page2 extends Component {
-  render () {
-    return (
-      <View style={styles.view}>
-        <Text>Page 2</Text>
-        <Button
-          onPress={() => {
-            signal.emit('action', {
-              type: 'pop',
-            })
-          }}
-          text='Back'
-        />
-      </View>
-    )
-  }
+
+const Page2 = props => {
+  return (
+    <View style={styles.view}>
+      <Text>Page 2</Text>
+      <Button
+        onPress={() => {
+          signal.emit('action', {
+            type: 'pop',
+          })
+        }}
+        text='Back'
+      />
+    </View>
+  )
 }
 
 const initialState = {
@@ -81,6 +78,8 @@ const styles = {
     padding: 12
   }
 }
+
+const Test = (props, context) => <Text>test</Text>
 
 class App extends Component {
   constructor (props) {
