@@ -20,7 +20,13 @@ export default class Search extends Component {
     console.log(newRoute)
 
     return (
-      <View style={{paddingTop: 64 + this.padding, padding: this.padding}}>
+      <View style={{
+        paddingTop: 64 + this.padding,
+        padding: this.padding,
+        opacity: .2,
+        backgroundColor: 'rgb(64,64,64)',
+        flex: 1
+      }}>
         <Text>{this.props.route.title}</Text>
         <Button
           text='Update title'

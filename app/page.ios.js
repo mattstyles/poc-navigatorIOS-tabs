@@ -26,7 +26,12 @@ export default class Page extends Component {
 
   render () {
     return (
-      <View style={{paddingTop: 64 + this.padding, padding: this.padding}}>
+      <View style={{
+        paddingTop: 64 + this.padding,
+        padding: this.padding,
+        flex: 1,
+        backgroundColor: 'rgb(255,255,255)'
+      }}>
         <Text>{this.props.route.title}</Text>
         <Button onPress={this.onPush.bind(this)} text='Push'/>
       </View>

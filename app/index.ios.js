@@ -13,20 +13,23 @@ export default class App extends Component {
     this.route = {
       component: MainPage,
       title: 'Home',
-      selected: 'home'
+      selected: 'home',
+      index: 0
     }
   }
 
   componentDidMount () {
+    const navigator = this.refs.Nav
+
     dispatcher.on('pop', () => {
-      // navigator.pop()
-      this.refs.Nav.pop()
+      navigator.pop()
+      // this.refs.Nav.pop()
     })
     dispatcher.on('push', (route) => {
-      this.refs.Nav.push(route)
+      navigator.push(route)
     })
     dispatcher.on('replace', (route) => {
-      this.refs.Nav.replace(route)
+      navigator.replace(route)
     })
   }
 
@@ -38,6 +41,7 @@ export default class App extends Component {
   }
 
   render () {
+    console.log(Navigator.SceneConfigs.PushFromRight)
     return (
       <Navigator
         ref='Nav'
